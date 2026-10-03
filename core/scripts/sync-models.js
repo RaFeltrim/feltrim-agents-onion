@@ -176,6 +176,7 @@ async function testLMStudio() {
             ? `| ${(json.usage.completion_tokens / (ms / 1000)).toFixed(1)} tok/s`
             : '';
           const localFolderMap = {
+            'deepseek-r1-distill-qwen-7b': 'bartowski',
             'qwen2.5-coder-7b-instruct': 'lmstudio-community',
             'qwen3.8-9b-distill': 'empero-ai',
             'qwen3-8b': 'Qwen'
@@ -202,6 +203,7 @@ async function testLMStudio() {
     } else {
       // Modelo instalado e pronto no disco para hot-swap via lms-manager
       const localFolderMap = {
+        'deepseek-r1-distill-qwen-7b': 'bartowski',
         'qwen2.5-coder-7b-instruct': 'lmstudio-community',
         'qwen3.8-9b-distill': 'empero-ai',
         'qwen3-8b': 'Qwen'

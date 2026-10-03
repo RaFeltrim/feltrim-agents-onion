@@ -192,7 +192,7 @@ const routeReplacement = `      const category = this.determineCategory(request)
         for (const [pId, pConf] of Object.entries(this.config.providers || {})) {
           const pModels = pConf.settings?.models || [];
           if (pModels.includes(request.model) || pConf.settings?.defaultModel === request.model ||
-              (pId.startsWith("lmstudio") && request.model.startsWith("qwen")) ||
+              (pId.startsWith("lmstudio") && (request.model.startsWith("qwen") || request.model.startsWith("deepseek"))) ||
               (pId.startsWith("gemini") && request.model.startsWith("gemini"))) {
             logger.info(\`Dynamic model route: \${request.model} -> \${pId}\`, {}, requestId, "routing");
             return pId;

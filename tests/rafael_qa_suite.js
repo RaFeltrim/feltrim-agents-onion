@@ -323,6 +323,30 @@ runner.test('Módulo', 'us-avaliator', 'docs', 'M3_S2', 'Proposta Executiva de S
   assert(content.includes('Copilot') || content.includes('Ollama') || content.includes('Gemini'), 'Proposta deve contrastar modelos e custos');
 });
 
+// ==============================================================================
+// 5. PACKS DINÂMICOS & NOVOS MVPS (Auto-Discovery)
+// ==============================================================================
+const packsRoot = path.join(ONION_ROOT, 'packs');
+if (fs.existsSync(packsRoot)) {
+  const customPacks = fs.readdirSync(packsRoot).filter(p => {
+    return !['cms-gherkin', 'cvp-sias-qa', 'us-avaliator'].includes(p) &&
+      fs.existsSync(path.join(packsRoot, p, 'tests'));
+  });
+
+  for (const packSlug of customPacks) {
+    const testDir = path.join(packsRoot, packSlug, 'tests');
+    const testFiles = fs.readdirSync(testDir).filter(f => f.endsWith('_test_suite.js'));
+    for (const tf of testFiles) {
+      runner.test('Módulo / MVP', packSlug, 'tests', `MVP_${packSlug.replace(/[^a-zA-Z0-9]/g, '_').toUpperCase()}`, `Bateria de Testes Automatizada do Pack ${packSlug}`, () => {
+        const testModule = require(path.join(testDir, tf));
+        if (typeof testModule.runTests === 'function') {
+          testModule.runTests();
+        }
+      });
+    }
+  }
+}
+
 // Execução
 runner.run().catch(err => {
   console.error('Falha crítica na suíte:', err);

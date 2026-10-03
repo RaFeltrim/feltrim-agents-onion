@@ -28,7 +28,7 @@ if (!fs.existsSync(ccrDir)) {
   fs.mkdirSync(ccrDir, { recursive: true });
 }
 
-const isLocal = targetModel.startsWith('qwen');
+const isLocal = targetModel.startsWith('qwen') || targetModel.startsWith('deepseek');
 const defaultProv = isLocal ? 'lmstudio-provider' : 'gemini-provider';
 
 const config = {
@@ -76,6 +76,7 @@ const config = {
             thinking: true
           },
           models: [
+            'deepseek-r1-distill-qwen-7b',
             'qwen2.5-coder-7b-instruct',
             'qwen3.8-9b-distill',
             'qwen3-8b'

@@ -1,0 +1,23 @@
+---
+description: Padrões de Qualidade Artificial Analysis, Testes SDET e Segurança MCP no Cursor
+globs: *
+---
+
+# Qualidade e Segurança (Cursor Rule)
+
+1. **Anti-Alucinação e Inteligência Calibrada**:
+   - Não adivinhe parâmetros nem invente assinaturas de funções.
+   - Siga a diretriz *AA-Omniscience*: se um contrato não estiver documentado, declare abstenção ou solicite confirmação em vez de alucinar.
+
+2. **Segurança MCP e Segredos**:
+   - Nunca insira senhas, chaves de API (`.env`) ou tokens JWT em prompts ou arquivos versionados.
+   - Respeite o princípio do menor privilégio para integrações MCP (sempre prefira `read_only=true` para inspeções).
+
+3. **Validação Obrigatória**:
+   - Todo incremento deve passar na suíte de testes integrada:
+     ```bash
+     cmd.exe /c test-onion.cmd
+     ```
+   - 100% de taxa de aceite (21/21+ testes).
+
+Consulte os contratos canônicos em [.agents/rules/20-quality.md](../../.agents/rules/20-quality.md) e [.agents/rules/30-security.md](../../.agents/rules/30-security.md).

@@ -14,25 +14,30 @@ function main() {
     const data = JSON.parse(input);
     const ctx = data.context_window || {};
 
-    // 1. Limite Máximo de Contexto (ex: 32768, 65536 ou 1000000)
+    const modelId = (data.model?.id || data.model?.display_name || process.env.ANTHROPIC_MODEL || '').toLowerCase();
+
+    // 1. Limite Máximo de Contexto Real por Família de Modelo
     let maxTokens = ctx.context_window_size;
-    if (!maxTokens || maxTokens <= 0) {
+    if (modelId.includes('gemini')) {
+      maxTokens = 1000000; // 1 Milhão de tokens para Gemini
+    } else if (modelId.includes('qwen') || modelId.includes('deepseek')) {
       maxTokens = parseInt(process.env.CLAUDE_CODE_MAX_CONTEXT_TOKENS || '32768', 10);
+    } else if (!maxTokens || maxTokens <= 0) {
+      maxTokens = 200000;
     }
 
-    // 2. Porcentagem Utilizada
-    let usedPct = null;
-    if (typeof ctx.used_percentage === 'number') {
-      usedPct = Math.round(ctx.used_percentage);
-    }
+    // 2. Porcentagem Utilizada e Tokens Atuais
+    let usedPct = (typeof ctx.used_percentage === 'number' && ctx.used_percentage > 0)
+      ? Math.round(ctx.used_percentage)
+      : null;
 
-    // 3. Tokens Atuais
-    let currentTokens = ctx.current_usage || ctx.total_input_tokens;
-    if (typeof currentTokens !== 'number') {
-      if (usedPct !== null) {
+    let currentTokens = ctx.current_usage || ctx.total_input_tokens || data.cost?.total_input_tokens;
+    if (typeof currentTokens !== 'number' || currentTokens === 0) {
+      if (usedPct !== null && usedPct > 0) {
         currentTokens = Math.round((usedPct / 100) * maxTokens);
       } else {
-        currentTokens = 0;
+        // Carga base padrão do system prompt do Claude Code (~23.4k tokens)
+        currentTokens = 23900;
       }
     }
 

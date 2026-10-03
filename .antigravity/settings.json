@@ -1,0 +1,15 @@
+{
+  "customizations": {
+    "root": ".agents",
+    "rules": ".agents/rules",
+    "skills": ".agents/skills"
+  },
+  "executionPolicy": {
+    "default": "request_review",
+    "allowFileRead": true,
+    "allowWorkspaceTerminal": true
+  },
+  "telemetry": {
+    "logLevel": "info"
+  }
+}

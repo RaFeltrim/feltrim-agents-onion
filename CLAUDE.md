@@ -13,11 +13,16 @@ operacionais estao em:
 ## Boot rapido
 
 1. Ler `core/CLAUDE.md`.
-2. Ler `core/memory/MEMORY.md` e carregar arquivos indexados.
-3. Glob `core/agents/*.md` e contar gens disponiveis.
-4. Ler `core/docs/SQUAD_INDEX.md` para entender quem invocar quando.
-5. Verificar se algum pack esta ativo (existe pasta em `packs/<nome>/` com
+2. Ler `.agents/rules/00-project.md` (Princípio do Contexto Mínimo Suficiente).
+3. Ler `core/memory/MEMORY.md` e carregar arquivos indexados.
+4. Glob `core/agents/*.md` e contar gens disponiveis.
+5. Ler `core/docs/SQUAD_INDEX.md` para entender quem invocar quando.
+6. Verificar se algum pack esta ativo (existe pasta em `packs/<nome>/` com
    `agents/` populado) e, se sim, ler `packs/<nome>/README.md`.
+
+## Governança Multi-IDE & Pesquisa Acadêmica
+- Regras canônicas de orquestração: `.agents/rules/` (`00-project`, `10-architecture`, `20-quality`, `30-security`, `40-git`).
+- Pesquisa acadêmica e benchmarks: `docs/deep-research/` (Guia Artificial Analysis 2026 e Boas Práticas Scratch / Antigravity 2.0).
 
 ## Packs disponiveis
 

@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "hooks": {
+    "post_init": [
+      {
+        "type": "command",
+        "description": "Valida integridade do ecossistema Onion",
+        "command": "cmd.exe /c test-onion.cmd"
+      }
+    ]
+  }
+}

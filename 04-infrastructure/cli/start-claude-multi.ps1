@@ -120,7 +120,7 @@ if ($MultiAgent) {
     $executionMode = "MultiAgent"
 }
 
-$isLocalModel = ($activeModelName -like "qwen*") -or ($activeProviderName -like "*LM Studio*")
+$isLocalModel = ($activeModelName -like "qwen*") -or ($activeModelName -like "deepseek*") -or ($activeProviderName -like "*LM Studio*")
 if ($isLocalModel) {
     $parallelSlots = if ($executionMode -eq "MultiAgent") { 2 } else { 1 }
     $defaultCtx = 32768
@@ -136,8 +136,12 @@ if ($isLocalModel) {
     $env:CLAUDE_CODE_MAX_CONTEXT_TOKENS = "$contextTokens"
 }
 $env:FELTRIM_EXECUTION_MODE = $executionMode.ToUpper()
-$env:CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT = "1"
-$env:ANTHROPIC_MODEL = $activeModelName
+# Permite troca dinamica de modelos via /model sem ser travado pela variavel de ambiente
+if ($Model -ne "") {
+    $env:ANTHROPIC_MODEL = $activeModelName
+} else {
+    Remove-Item env:ANTHROPIC_MODEL -ErrorAction SilentlyContinue
+}
 
 # 4.2. Sincroniza o modelo ativo nos arquivos de settings.json para refletir no header do Claude Code
 $userSettingsPath = Join-Path $env:USERPROFILE ".claude\settings.json"

@@ -1,0 +1,21 @@
+---
+description: Diretrizes de Clean Architecture / Onion Architecture e concorrência para o Cursor
+globs: *
+---
+
+# Onion Architecture & Concorrência (Cursor Rule)
+
+Ao gerar código ou refatorar no ecossistema **Feltrim Agents Onion**:
+
+1. **Respeite o Fluxo Centrípeto de Camadas**:
+   - `01-domain/`: Zero dependências externas ou de infraestrutura.
+   - `02-contracts/`: Interfaces abstratas e schemas JSON imutáveis.
+   - `03-use-cases/`: Regras de orquestração e fluxos de negócio.
+   - `04-infrastructure/`: Adaptadores concretos (LLM, CLI, DB, HTTP).
+
+2. **Concorrência e Inicialização Segura**:
+   - Inicializações devem adotar o padrão determinístico *Single Master* (`[INIT_SETUP] and wait` -> `[START_ENGINE]`).
+   - Evite condições de corrida (*race conditions*) não editando os mesmos arquivos em paralelo sem sincronização explícita.
+   - Guardrail de execução atômica local limitado a 500ms por bloco.
+
+Consulte o contrato canônico completo em [.agents/rules/10-architecture.md](../../.agents/rules/10-architecture.md).
