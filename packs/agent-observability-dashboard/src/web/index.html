@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feltrim Agents - Observability Dashboard</title>
+  <meta name="description" content="Dashboard de telemetria e observabilidade em tempo real para o ecossistema Feltrim Agents Onion.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo-badge">🛡️</div>
+        <div>
+          <h1 id="app-title">Feltrim Agents <span>Onion</span></h1>
+          <p class="subtitle">Telemetria & Observabilidade em Tempo Real</p>
+        </div>
+      </div>
+      
+      <!-- Services Status Pills -->
+      <div class="service-pills">
+        <div class="pill" id="pill-ccr">
+          <span class="status-dot"></span>
+          <span>CCR :3456</span>
+        </div>
+        <div class="pill" id="pill-lms">
+          <span class="status-dot"></span>
+          <span>LM Studio :1234</span>
+        </div>
+        <div class="pill online" id="pill-gemini">
+          <span class="status-dot"></span>
+          <span>Google Gemini Cloud</span>
+        </div>
+        <button id="btn-run-tests" class="btn btn-primary" title="Executar Bateria de Testes SDET">
+          <span>🧪 Executar Testes SDET</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Top Metrics Section -->
+      <section class="metrics-grid">
+        <!-- Card 1: Active Model -->
+        <div class="card metric-card" id="card-active-model">
+          <div class="card-header">
+            <span class="card-label">MODELO ATIVO NO ECOSSISTEMA</span>
+            <span class="badge active-badge" id="badge-active-provider">LM Studio</span>
+          </div>
+          <div class="metric-value" id="val-active-model-name">deepseek-r1-distill-qwen-7b</div>
+          <div class="metric-details">
+            <div class="detail-item">
+              <span class="detail-label">Janela Máxima:</span>
+              <span class="detail-val" id="val-context-window">32,768 tokens</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Alocação:</span>
+              <span class="detail-val text-cyan">GPU VRAM Offload</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: GPU VRAM -->
+        <div class="card metric-card" id="card-gpu-vram">
+          <div class="card-header">
+            <span class="card-label">NVIDIA QUADRO T1000 (VRAM)</span>
+            <span class="badge" id="badge-gpu-temp">48°C</span>
+          </div>
+          <div class="metric-value">
+            <span id="val-vram-used">3,580</span> <small>/ 4,096 MB</small>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="bar-vram-fill" style="width: 87%;"></div>
+          </div>
+          <div class="metric-footer">
+            <span id="val-vram-percent">87% Ocupado</span>
+            <span class="text-emerald" id="val-vram-free">516 MB Livres</span>
+          </div>
+        </div>
+
+        <!-- Card 3: System RAM -->
+        <div class="card metric-card" id="card-sys-ram">
+          <div class="card-header">
+            <span class="card-label">MEMÓRIA RAM DO SISTEMA</span>
+            <span class="badge" id="badge-ram-status">Saudável</span>
+          </div>
+          <div class="metric-value">
+            <span id="val-ram-used">14</span> <small>/ 32 GB</small>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill ram-fill" id="bar-ram-fill" style="width: 44%;"></div>
+          </div>
+          <div class="metric-footer">
+            <span id="val-ram-percent">44% em Uso</span>
+            <span class="text-emerald" id="val-ram-free">18 GB Livres</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Model Fleet Section -->
+      <section class="section-container">
+        <div class="section-header">
+          <h2 id="fleet-title">Frota de Modelos e Adaptadores</h2>
+          <span class="badge" id="badge-fleet-count">6 Modelos Prontos</span>
+        </div>
+        <div class="models-grid" id="models-grid-container">
+          <!-- Dynamically populated or pre-rendered -->
+        </div>
+      </section>
+
+      <!-- Terminal / Test Runner Modal or Inline Section -->
+      <section class="section-container">
+        <div class="section-header">
+          <h2>Console de Auditoria & Evidência SDET (Rafael QA)</h2>
+          <span class="badge badge-emerald" id="badge-test-status">22/22 Testes Aprovados</span>
+        </div>
+        <div class="terminal-card" id="terminal-window">
+          <div class="terminal-topbar">
+            <span class="term-btn term-close"></span>
+            <span class="term-btn term-min"></span>
+            <span class="term-btn term-max"></span>
+            <span class="term-title">cmd.exe /c test-onion.cmd — stdout</span>
+          </div>
+          <pre class="terminal-body" id="terminal-output">
+================================================================================
+🛡️  SUITE DE TESTES INTEGRADA - RAFAEL QA SDET SR
+🏛️  COBERTURA GRANULAR: [CORE] | [MÓDULOS / PACKS] | [SUBMÓDULOS]
+================================================================================
+   🟢 Core Framework                 | 9/9 testes (100%)
+   🟢 cms-gherkin                    | 5/5 testes (100%)
+   🟢 cvp-sias-qa                    | 4/4 testes (100%)
+   🟢 us-avaliator                   | 2/2 testes (100%)
+   🟢 agent-observability-dashboard  | 1/1 testes (100%)
+   🟢 mvp-starter                    | 1/1 testes (100%)
+--------------------------------------------------------------------------------
+   TOTAL DE TESTES GARANTIDOS: 22
+   APROVADOS: 22 🟢 | TAXA FINAL DE QUALIDADE: 100.0%
+================================================================================
+          </pre>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Feltrim Agents Onion &bull; Arquitetura em Camadas &bull; Clean Architecture & SDET Rigor</p>
+      <p class="text-dim" id="last-updated">Última atualização: Conectando...</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
