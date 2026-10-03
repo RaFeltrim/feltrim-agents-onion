@@ -9,9 +9,11 @@ if (-not $Force) {
     try {
         $checkConn = Get-NetTCPConnection -LocalPort 3456 -State Listen -ErrorAction SilentlyContinue
         if ($checkConn) {
-            $health = Invoke-RestMethod -Uri "http://127.0.0.1:3456/health" -TimeoutSec 1 -ErrorAction Stop
-            Write-Host "[OK] Claude Code Router ja esta ativo e saudavel na porta 3456." -ForegroundColor Green
-            exit 0
+            $status = Invoke-RestMethod -Uri "http://127.0.0.1:3456/status" -TimeoutSec 1 -ErrorAction Stop
+            if ($status.server -eq "claude-code-router") {
+                Write-Host "[OK] Claude Code Router ja esta ativo e saudavel na porta 3456." -ForegroundColor Green
+                exit 0
+            }
         }
     } catch {}
 }
