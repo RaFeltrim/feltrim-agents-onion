@@ -1,0 +1,62 @@
+{
+  ".active-models.json": {
+    "mtime": 1790962147.460888,
+    "seen": 1790977112.2567081,
+    "ast_hash": "44f6e3fa31b9984fe84d74ac125c1261",
+    "semantic_hash": "44f6e3fa31b9984fe84d74ac125c1261"
+  },
+  ".claude/settings.json": {
+    "mtime": 1790962322.7294674,
+    "seen": 1790977112.2567081,
+    "ast_hash": "d3e8d3457670946709769cc4ef03bbbd",
+    "semantic_hash": "d3e8d3457670946709769cc4ef03bbbd"
+  },
+  "core/scripts/configure-ccr.js": {
+    "mtime": 1790947848.53558,
+    "seen": 1790977112.2567081,
+    "ast_hash": "f73e0a87078dbdbad6f5d1181588490a",
+    "semantic_hash": "f73e0a87078dbdbad6f5d1181588490a"
+  },
+  "core/scripts/patch-ccr.js": {
+    "mtime": 1790959170.9974868,
+    "seen": 1790977112.2567081,
+    "ast_hash": "2b2edb43915cc9eee0417e848ca500f8",
+    "semantic_hash": "2b2edb43915cc9eee0417e848ca500f8"
+  },
+  "core/scripts/start-claude-multi.ps1": {
+    "mtime": 1790962969.4480784,
+    "seen": 1790977112.2567081,
+    "ast_hash": "a3a77598a7e6e6de4db3a441b150370b",
+    "semantic_hash": "a3a77598a7e6e6de4db3a441b150370b"
+  },
+  "core/scripts/sync-models.js": {
+    "mtime": 1790961149.938205,
+    "seen": 1790977112.2567081,
+    "ast_hash": "12b121e4a9050cc00680a895812fd607",
+    "semantic_hash": "12b121e4a9050cc00680a895812fd607"
+  },
+  "packs/cms-gherkin/ferramentas/gerar_artefatos.py": {
+    "mtime": 1774040332.0,
+    "seen": 1790977112.2567081,
+    "ast_hash": "79abee02fa385a7e25124ccf1004af74",
+    "semantic_hash": "79abee02fa385a7e25124ccf1004af74"
+  },
+  "packs/cms-gherkin/ferramentas/registrar_problema.py": {
+    "mtime": 1774040132.0,
+    "seen": 1790977112.2567081,
+    "ast_hash": "82dd1f538a8f5f368d24c07cdc60f7c5",
+    "semantic_hash": "82dd1f538a8f5f368d24c07cdc60f7c5"
+  },
+  "packs/cms-gherkin/fontes-estruturadas/MODELO-FONTE-ESTRUTURADA.json": {
+    "mtime": 1774040192.0,
+    "seen": 1790977112.2567081,
+    "ast_hash": "4762484cb8f709afa1bc7f4f80f683ff",
+    "semantic_hash": "4762484cb8f709afa1bc7f4f80f683ff"
+  },
+  "packs/cms-gherkin/fontes-estruturadas/PROJETO-EXEMPLO.json": {
+    "mtime": 1774040192.0,
+    "seen": 1790977112.2567081,
+    "ast_hash": "3bc2266ae65191046d38392301a10804",
+    "semantic_hash": "3bc2266ae65191046d38392301a10804"
+  }
+}

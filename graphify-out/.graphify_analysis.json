@@ -1,0 +1,204 @@
+{
+  "communities": {
+    "0": [
+      "packs_cms_gherkin_ferramentas_gerar_artefatos",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_build_workbook",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_collapse_space",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_format_bullets",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_has_required_steps",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_join_lines",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_load_source",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_main",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_normalize_ac_id",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_render_analysis",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_render_feature",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_resolve_source",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_safe_sheet_title",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_set_widths",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_split_bdd_steps",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_to_ac_tag",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_unique_tags",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_validate_source",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_wrap_feature_description",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_write_label_value",
+      "packs_cms_gherkin_ferramentas_gerar_artefatos_write_table_header",
+      "path",
+      "workbook"
+    ],
+    "1": [
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_acceptance_criteria",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_attention_points",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_business_problem",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_business_rules",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_conclusion",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_dependencies",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_feature_description",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_feature_tags",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_functional_goal",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_generated_at",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_main_context",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_modeling_decisions",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_risks",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_scenario_strategy",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_scenarios",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_slug",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_source_documents",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_summary",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_test_data",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_title",
+      "packs_cms_gherkin_fontes_estruturadas_modelo_fonte_estruturada_version"
+    ],
+    "2": [
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_acceptance_criteria",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_attention_points",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_business_problem",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_business_rules",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_conclusion",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_dependencies",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_feature_description",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_feature_tags",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_functional_goal",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_generated_at",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_main_context",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_modeling_decisions",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_risks",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_scenario_strategy",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_scenarios",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_slug",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_source_documents",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_summary",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_test_data",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_title",
+      "packs_cms_gherkin_fontes_estruturadas_projeto_exemplo_version"
+    ],
+    "3": [
+      "core_scripts_sync_models",
+      "core_scripts_sync_models_env",
+      "core_scripts_sync_models_fs",
+      "core_scripts_sync_models_getenvconfig",
+      "core_scripts_sync_models_main",
+      "core_scripts_sync_models_modelprobeanimation",
+      "core_scripts_sync_models_modelprobeanimation_constructor",
+      "core_scripts_sync_models_modelprobeanimation_finishfailure",
+      "core_scripts_sync_models_modelprobeanimation_finishsuccess",
+      "core_scripts_sync_models_modelprobeanimation_getcurrentmock",
+      "core_scripts_sync_models_modelprobeanimation_start",
+      "core_scripts_sync_models_os",
+      "core_scripts_sync_models_path",
+      "core_scripts_sync_models_saverouterconfig",
+      "core_scripts_sync_models_testgemini",
+      "core_scripts_sync_models_testgroq",
+      "core_scripts_sync_models_testlmstudio"
+    ],
+    "4": [
+      "core_scripts_configure_ccr",
+      "core_scripts_configure_ccr_ccrdir",
+      "core_scripts_configure_ccr_config",
+      "core_scripts_configure_ccr_configpath",
+      "core_scripts_configure_ccr_envpath",
+      "core_scripts_configure_ccr_fs",
+      "core_scripts_configure_ccr_os",
+      "core_scripts_configure_ccr_path"
+    ],
+    "5": [
+      "core_scripts_patch_ccr",
+      "core_scripts_patch_ccr_ccrdir",
+      "core_scripts_patch_ccr_cli",
+      "core_scripts_patch_ccr_clipath",
+      "core_scripts_patch_ccr_endidx",
+      "core_scripts_patch_ccr_fs",
+      "core_scripts_patch_ccr_path",
+      "core_scripts_patch_ccr_startidx"
+    ],
+    "6": [
+      "packs_cms_gherkin_ferramentas_registrar_problema",
+      "packs_cms_gherkin_ferramentas_registrar_problema_default_report_header",
+      "packs_cms_gherkin_ferramentas_registrar_problema_main"
+    ],
+    "7": [
+      "core_scripts_start_claude_multi"
+    ]
+  },
+  "cohesion": {
+    "0": 0.18181818181818182,
+    "1": 0.09090909090909091,
+    "2": 0.09090909090909091,
+    "3": 0.2426470588235294,
+    "4": 0.25,
+    "5": 0.25,
+    "6": 1.0,
+    "7": 1.0
+  },
+  "gods": [
+    {
+      "id": "core_scripts_sync_models_modelprobeanimation",
+      "label": "ModelProbeAnimation",
+      "degree": 9
+    },
+    {
+      "id": "packs_cms_gherkin_ferramentas_gerar_artefatos_build_workbook",
+      "label": "build_workbook()",
+      "degree": 9
+    },
+    {
+      "id": "packs_cms_gherkin_ferramentas_gerar_artefatos_main",
+      "label": "main()",
+      "degree": 6
+    },
+    {
+      "id": "packs_cms_gherkin_ferramentas_gerar_artefatos_render_feature",
+      "label": "render_feature()",
+      "degree": 6
+    },
+    {
+      "id": "core_scripts_sync_models_testgemini",
+      "label": "testGemini()",
+      "degree": 6
+    },
+    {
+      "id": "core_scripts_sync_models_testgroq",
+      "label": "testGroq()",
+      "degree": 6
+    },
+    {
+      "id": "core_scripts_sync_models_testlmstudio",
+      "label": "testLMStudio()",
+      "degree": 6
+    },
+    {
+      "id": "packs_cms_gherkin_ferramentas_gerar_artefatos_validate_source",
+      "label": "validate_source()",
+      "degree": 5
+    },
+    {
+      "id": "core_scripts_sync_models_main",
+      "label": "main()",
+      "degree": 5
+    },
+    {
+      "id": "packs_cms_gherkin_ferramentas_gerar_artefatos_collapse_space",
+      "label": "collapse_space()",
+      "degree": 4
+    }
+  ],
+  "surprises": [],
+  "questions": [
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `acceptance_criteria`, `attention_points`, `business_problem` to the rest of the system?",
+      "why": "60 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `MODELO-FONTE-ESTRUTURADA.json` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `PROJETO-EXEMPLO.json` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
