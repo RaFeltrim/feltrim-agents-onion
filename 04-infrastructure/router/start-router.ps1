@@ -4,7 +4,19 @@ param(
 
 $ErrorActionPreference = 'SilentlyContinue'
 
-# 1. Mata processos existentes na porta 3456
+# 1. Se o router ja estiver ativo e respondendo na porta 3456, reutiliza imediatamente (a menos que -Force seja passado)
+if (-not $Force) {
+    try {
+        $checkConn = Get-NetTCPConnection -LocalPort 3456 -State Listen -ErrorAction SilentlyContinue
+        if ($checkConn) {
+            $health = Invoke-RestMethod -Uri "http://127.0.0.1:3456/health" -TimeoutSec 1 -ErrorAction Stop
+            Write-Host "[OK] Claude Code Router ja esta ativo e saudavel na porta 3456." -ForegroundColor Green
+            exit 0
+        }
+    } catch {}
+}
+
+# 1.1. Mata processos existentes na porta 3456 se forçado ou se não respondia
 $existing = Get-NetTCPConnection -LocalPort 3456 -State Listen -ErrorAction SilentlyContinue
 if ($existing) {
     $existing | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object {

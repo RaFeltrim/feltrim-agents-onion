@@ -149,12 +149,12 @@ Write-Host "   (Telemetria em tempo real gravada em: .claude\ccr.log)" -Foregrou
 # Aguarda ativamente o router abrir a porta 3456 antes de prosseguir
 $routerReady = $false
 for ($i = 0; $i -lt 15; $i++) {
-    Start-Sleep -Milliseconds 400
     $checkPort = Get-NetTCPConnection -LocalPort 3456 -State Listen -ErrorAction SilentlyContinue
     if ($checkPort) {
         $routerReady = $true
         break
     }
+    Start-Sleep -Milliseconds 400
 }
 
 if (-not $routerReady) {
