@@ -147,6 +147,13 @@ foreach ($sFile in @($userSettingsPath, $projSettingsPath)) {
         try {
             $sJson = Get-Content $sFile -Raw | ConvertFrom-Json
             $sJson | Add-Member -NotePropertyName "model" -NotePropertyValue $activeModelName -Force
+            if (-not $sJson.statusLine) {
+                $statusLineObj = [PSCustomObject]@{
+                    type = "command"
+                    command = "node C:/Users/RafaelFeltrim/.claude/statusline.js"
+                }
+                $sJson | Add-Member -NotePropertyName "statusLine" -NotePropertyValue $statusLineObj -Force
+            }
             $sJson | ConvertTo-Json -Depth 10 | Set-Content $sFile -Encoding utf8
         } catch {}
     }
