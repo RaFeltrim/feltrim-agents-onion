@@ -6,6 +6,9 @@ param(
     [string]$Project = ".",
     [string]$Model = "",
     [string]$Task = "",
+    [switch]$Solo,
+    [switch]$MultiAgent,
+    [int]$ContextLength = 0,
     [switch]$Auto,
     [switch]$BypassPermissions,
     [switch]$PrepContext,
@@ -111,19 +114,28 @@ if (Test-Path $cacheFile) {
     } catch {}
 }
 
-# 4.1. Garante que se for modelo local, ele seja ejetado/carregado na VRAM com contexto 48k e barra de load
+# 4.1. Define Modo de Execução: Solo (1 Agente dedicado, 32k) vs Multi-Agent (com limitação e roteamento híbrido)
+$executionMode = "Solo"
+if ($MultiAgent) {
+    $executionMode = "MultiAgent"
+}
+
 $isLocalModel = ($activeModelName -like "qwen*") -or ($activeProviderName -like "*LM Studio*")
 if ($isLocalModel) {
+    $parallelSlots = if ($executionMode -eq "MultiAgent") { 2 } else { 1 }
+    $defaultCtx = 32768
+    $contextTokens = if ($ContextLength -gt 0) { $ContextLength } else { $defaultCtx }
+    
     $lmsScript = Join-Path $llmDir "lms-manager.js"
     if (Test-Path $lmsScript) {
-        & node $lmsScript $activeModelName 65536
+        & node $lmsScript $activeModelName $contextTokens $parallelSlots
     }
-    $contextTokens = 65536
-    $env:CLAUDE_CODE_MAX_CONTEXT_TOKENS = "65536"
+    $env:CLAUDE_CODE_MAX_CONTEXT_TOKENS = "$contextTokens"
 } else {
-    $contextTokens = 1000000
-    $env:CLAUDE_CODE_MAX_CONTEXT_TOKENS = "1000000"
+    $contextTokens = if ($ContextLength -gt 0) { $ContextLength } else { 1000000 }
+    $env:CLAUDE_CODE_MAX_CONTEXT_TOKENS = "$contextTokens"
 }
+$env:FELTRIM_EXECUTION_MODE = $executionMode.ToUpper()
 $env:CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT = "1"
 $env:ANTHROPIC_MODEL = $activeModelName
 
@@ -172,7 +184,8 @@ Write-Host "====================================================================
 Write-Host ">> Conectando Claude Code CLI [Onion Architecture]:" -ForegroundColor Green
 Write-Host "   Modelo Ativo: $activeModelName" -ForegroundColor White
 Write-Host "   Provedor:     $activeProviderName" -ForegroundColor White
-Write-Host "   Contexto:     $contextTokens tokens" -ForegroundColor Cyan
+Write-Host "   Modo:         $($executionMode.ToUpper()) $(if ($executionMode -eq 'Solo') { '[1 Agente - 100% Recursos Dedicados, Foco em Resposta Rapida]' } else { '[Orquestrador + Subagentes com Limitacao e Roteamento Hibrido]' })" -ForegroundColor Magenta
+Write-Host "   Contexto:     $contextTokens tokens (Calibrado para GPU/VRAM)" -ForegroundColor Cyan
 Write-Host "   Endpoint:     $env:ANTHROPIC_BASE_URL" -ForegroundColor DarkGray
 Write-Host "   Troca Rapida: Digite /model no terminal para alternar a qualquer momento" -ForegroundColor Yellow
 Write-Host "========================================================================" -ForegroundColor Green

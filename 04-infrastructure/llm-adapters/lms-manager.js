@@ -63,7 +63,7 @@ class LmsModelAnimation {
   }
 }
 
-async function ensureModelLoaded(modelKey, contextLength = 65536) {
+async function ensureModelLoaded(modelKey, contextLength = 32768, parallel = 1) {
   // 1. Garantir servidor ligado
   try {
     const status = execSync('lms status', { stdio: 'pipe' }).toString();
@@ -79,7 +79,7 @@ async function ensureModelLoaded(modelKey, contextLength = 65536) {
     const hasModel = ps.includes(modelKey);
     const hasContext = ps.includes(String(contextLength));
     if (hasModel && hasContext) {
-      console.log(`   🔥 Modelo local ${modelKey} já está carregado com contexto ${contextLength} e pronto na memória!`);
+      console.log(`   🔥 Modelo local ${modelKey} já está carregado com contexto ${contextLength} (Parallel: ${parallel}) e pronto na memória!`);
       return true;
     }
   } catch (_) {}
@@ -97,15 +97,15 @@ async function ensureModelLoaded(modelKey, contextLength = 65536) {
   }
   await new Promise(r => setTimeout(r, 800));
 
-  // 4. Carregar o novo modelo com barra de progresso animada e limite estrito de Parallel: 1
-  console.log(`🚀 Carregando ${modelKey} na VRAM (Contexto: ${contextLength} tokens, Parallel: 1 slot)...`);
+  // 4. Carregar o novo modelo com barra de progresso animada e limite calibrado
+  console.log(`🚀 Carregando ${modelKey} na VRAM (Contexto: ${contextLength} tokens, Parallel: ${parallel} slot(s))...`);
   const anim = new LmsModelAnimation(modelKey, 16);
   anim.start();
 
   const t0 = Date.now();
   try {
-    // --parallel 1 garante que o LM Studio aloque apenas 1 slot de KV cache em RAM, evitando saltos para 94% de RAM
-    execSync(`lms load ${modelKey} -y --gpu max --context-length ${contextLength} --parallel 1`, {
+    // --parallel controla slots de KV cache em RAM/VRAM
+    execSync(`lms load ${modelKey} -y --gpu max --context-length ${contextLength} --parallel ${parallel}`, {
       stdio: 'pipe',
       timeout: 90000
     });
@@ -118,15 +118,16 @@ async function ensureModelLoaded(modelKey, contextLength = 65536) {
   }
 }
 
-// Se chamado diretamente via CLI: node lms-manager.js <modelKey> [contextLength]
+// Se chamado diretamente via CLI: node lms-manager.js <modelKey> [contextLength] [parallel]
 if (require.main === module) {
   const modelKey = process.argv[2];
-  const ctx = process.argv[3] ? parseInt(process.argv[3], 10) : 65536;
+  const ctx = process.argv[3] ? parseInt(process.argv[3], 10) : 32768;
+  const parallel = process.argv[4] ? parseInt(process.argv[4], 10) : 1;
   if (!modelKey) {
-    console.log('Uso: node lms-manager.js <modelKey> [contextLength]');
+    console.log('Uso: node lms-manager.js <modelKey> [contextLength] [parallel]');
     process.exit(1);
   }
-  ensureModelLoaded(modelKey, ctx).then(ok => process.exit(ok ? 0 : 1));
+  ensureModelLoaded(modelKey, ctx, parallel).then(ok => process.exit(ok ? 0 : 1));
 }
 
 module.exports = { ensureModelLoaded };
